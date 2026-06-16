@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick-Translate</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">⚡ Quick-Translate</div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Translate Instantly</h1>
+        <p>English ↔ Hindi with Voice & AI-Powered Experience</p>
+        <a href="#translator" class="hero-btn">Start Translating</a>
+    </div>
+</header>
+
+<section id="translator" class="translator-section">
+
+<div class="translator-card">
+
+<div class="lang-row">
+
+<select id="sourceLang">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+</select>
+
+<button id="swapBtn">⇄</button>
+
+<select id="targetLang">
+    <option value="hi">Hindi</option>
+    <option value="en">English</option>
+</select>
+
+</div>
+
+<textarea
+id="inputText"
+placeholder="Enter text here..."
+></textarea>
+
+<div class="action-row">
+
+<button id="voiceBtn">🎤 Speak</button>
+
+<button id="translateBtn">
+Translate
+</button>
+
+</div>
+
+<textarea
+id="outputText"
+placeholder="Translation appears here..."
+readonly
+></textarea>
+
+<div class="output-actions">
+
+<button id="speakBtn">
+🔊 Listen
+</button>
+
+<button id="copyBtn">
+📋 Copy
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+Made with ❤️ by Shanu Choudhary
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
