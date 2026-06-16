@@ -3,140 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick-Translate | Advanced English & Hindi Translation Suite</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Quick-Translate | Simple Layout</title>
+    <style>
+        body {
+            background-color: #0b071e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .workspace {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        textarea, .output-box {
+            width: 50%;
+            height: 200px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+        textarea {
+            background-color: #161233;
+            color: #fff;
+            border: 1px solid #4f46e5;
+            resize: none;
+        }
+        .output-box {
+            background-color: #1c183a;
+            color: #a78bfa;
+            border: 1px solid #7c3aed;
+            text-align: left;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #4338ca;
+        }
+    </style>
 </head>
-<body class="text-slate-200 min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
+<body>
 
-    <div class="absolute top-[-10%] left-1/4 w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none scroll-parallax-blob-1"></div>
-    <div class="absolute top-[20%] right-1/4 w-[500px] h-[500px] bg-purple-600/12 rounded-full blur-[160px] pointer-events-none scroll-parallax-blob-2"></div>
-
-    <header class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center relative z-20 opacity-0 animate-engine-entry" style="animation-delay: 0.1s">
-        <div class="flex items-center gap-3 group">
-            <div class="h-11 w-11 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:rotate-6 transition-transform duration-300">
-                <i class="fa-solid fa-language text-xl text-white"></i>
-            </div>
-            <span class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">Quick-Translate</span>
-        </div>
-        <a href="#analytical-features" class="text-sm font-semibold text-slate-400 hover:text-white transition-colors duration-300 flex items-center gap-2">
-            System Specs <i class="fa-solid fa-arrow-down text-xs animate-bounce"></i>
-        </a>
-    </header>
-
-    <main class="max-w-6xl mx-auto px-4 pt-4 pb-28 relative z-20">
+    <div class="container">
+        <h2>Quick-Translate Studio</h2>
+        <p>Type in English on the left, then click Translate to get Hindi output.</p>
         
-        <div class="glass-canvas rounded-[2.5rem] p-4 sm:p-8 shadow-2xl shadow-black/80 opacity-0 animate-engine-entry animate-workspace-float relative mb-20" style="animation-delay: 0.2s">
+        <div class="workspace">
+            <textarea id="inputText" placeholder="CLICK HERE TO TYPE TEXT..."></textarea>
             
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-800/60">
-                
-                <div class="flex items-center justify-between w-full sm:w-52 py-3.5 px-6 bg-slate-950/60 rounded-2xl border border-slate-800/80 shadow-inner">
-                    <span id="srcLangText" class="font-bold tracking-widest text-indigo-400 text-xs">ENGLISH</span>
-                    <i class="fa-solid fa-circle text-[6px] text-indigo-500/60"></i>
-                </div>
-
-                <button id="swapBtn" title="Swap Translation Direction" class="group relative h-14 w-14 rounded-full bg-gradient-to-b from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-600/30 active:scale-95 transition-all duration-300">
-                    <i class="fa-solid fa-arrows-rotate text-xl transition-transform duration-500 group-hover:rotate-180"></i>
-                </button>
-
-                <div class="flex items-center justify-between w-full sm:w-52 py-3.5 px-6 bg-slate-950/60 rounded-2xl border border-slate-800/80 shadow-inner">
-                    <span id="targetLangText" class="font-bold tracking-widest text-purple-400 text-xs">HINDI (हिंदी)</span>
-                    <i class="fa-solid fa-circle text-[6px] text-purple-500/60"></i>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-slate-800/40 mt-8 rounded-3xl overflow-hidden border border-slate-800/60 shadow-2xl">
-                
-                <div class="bg-slate-950/20 p-6 flex flex-col justify-between min-h-[320px] transition-all duration-300 focus-within:bg-slate-950/40">
-                    <textarea id="srcTextArea" placeholder="Type or paste text here to translate instantly..." class="w-full h-48 bg-transparent text-slate-100 placeholder-slate-600 resize-none focus:outline-none text-xl font-medium leading-relaxed" maxlength="5000"></textarea>
-                    
-                    <div class="flex items-center justify-between pt-5 border-t border-slate-800/40">
-                        <div class="flex items-center gap-3">
-                            <button id="micBtn" title="Trigger Voice Input Dictation" class="h-11 w-11 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800/80 text-slate-400 hover:text-white flex items-center justify-center transition-all relative group">
-                                <i id="micIcon" class="fa-solid fa-microphone text-base transition-colors"></i>
-                                <span id="micPulse" class="absolute inset-0 rounded-xl bg-rose-500/20 animate-ping hidden"></span>
-                            </button>
-                            <button id="speakSrcBtn" title="Speak Input Pronunciation" class="h-11 w-11 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800/80 text-slate-400 hover:text-white flex items-center justify-center transition-all">
-                                <i class="fa-solid fa-volume-high text-base"></i>
-                            </button>
-                        </div>
-                        <span id="charCount" class="text-xs font-bold tracking-wider text-slate-600">0 / 5000</span>
-                    </div>
-                </div>
-
-                <div id="outputContainer" class="bg-slate-950/40 p-6 flex flex-col justify-between min-h-[320px] relative">
-                    <div id="shimmerOverlay" class="absolute inset-0 shimmer-mask opacity-0 pointer-events-none transition-opacity duration-300 z-10"></div>
-                    
-                    <div id="targetTextDisplay" class="w-full h-48 text-slate-500 text-xl font-medium leading-relaxed select-text overflow-y-auto whitespace-pre-wrap italic">Translation pipeline standing by...</div>
-                    
-                    <div class="flex items-center justify-between pt-5 border-t border-slate-800/40 relative z-20">
-                        <div class="flex items-center gap-3">
-                            <button id="speakTargetBtn" title="Speak Translated Output Pronunciation" class="h-11 w-11 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800/80 text-slate-400 hover:text-white flex items-center justify-center transition-all">
-                                <i class="fa-solid fa-volume-high text-base"></i>
-                            </button>
-                        </div>
-                        
-                        <button id="copyBtn" class="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-indigo-600/10 hover:bg-indigo-600 text-indigo-400 hover:text-white border border-indigo-500/20 hover:border-transparent text-xs font-bold tracking-wider uppercase transition-all duration-300 active:scale-95">
-                            <i class="fa-regular fa-copy text-sm"></i> <span>Copy Result</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+            <div id="outputText" class="output-box">Translation will appear here...</div>
         </div>
 
-        <div class="text-center max-w-4xl mx-auto mb-6 opacity-0 animate-engine-entry" style="animation-delay: 0.4s">
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-[1.12]">
-                Linguistic Boundaries, <br>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-                    Dissolved in Real-Time
-                </span>
-            </h1>
-            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
-                Experience natural bi-directional English and Hindi communications. Engineered with low-latency automation pipelines and hands-free vocal streaming controls.
-            </p>
-        </div>
-
-    </main>
-
-    <section id="analytical-features" class="max-w-7xl mx-auto px-6 py-28 border-t border-slate-900/60 relative z-20">
-        <div class="mb-16 text-center">
-            <h2 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400 tracking-tight">System Operational Framework</h2>
-            <p class="text-slate-500 text-sm mt-2 font-medium">Under the hood capabilities of your runtime translation suite</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-canvas glass-panel-interactive p-8 rounded-2xl">
-                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-6 shadow-inner">
-                    <i class="fa-solid fa-bolt text-lg"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-2.5 text-slate-100">Debounced Sync Execution</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-medium">Monitors interface composition structures continuously, triggering calculations asynchronously exactly 500ms post keystroke to optimize bandwidth consumption cycles.</p>
-            </div>
-            <div class="glass-canvas glass-panel-interactive p-8 rounded-2xl">
-                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6 shadow-inner">
-                    <i class="fa-solid fa-microphone-lines text-lg"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-2.5 text-slate-100">Integrated Speech Mechanics</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-medium">Binds dynamically with high-fidelity system engines (`SpeechRecognition`). Auto-configures dialect targets fluidly between Western phonetics and Devanagari acoustics.</p>
-            </div>
-            <div class="glass-canvas glass-panel-interactive p-8 rounded-2xl">
-                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-pink-500/10 to-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 mb-6 shadow-inner">
-                    <i class="fa-solid fa-wave-square text-lg"></i>
-                </div>
-                <h3 class="text-lg font-bold mb-2.5 text-slate-100">Synthesis Pronunciation</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-medium">Converts target structural parameters into native audio channels via custom `SpeechSynthesisUtterance` mapping handlers for precise language training.</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="toast" class="fixed bottom-6 right-6 glass-canvas border-indigo-500/40 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-28 opacity-0 transition-all duration-500 z-50 text-xs font-bold tracking-wider uppercase">
-        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
-        <span id="toastMessage" class="text-slate-200">Action logged into scope</span>
+        <button class="btn" onclick="triggerManualTranslation()">Translate Now</button>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        async function triggerManualTranslation() {
+            const text = document.getElementById('inputText').value;
+            const outputDiv = document.getElementById('outputText');
+            
+            if (!text.trim()) {
+                outputDiv.innerText = "Please type something first!";
+                return;
+            }
+
+            outputDiv.innerText = "Translating...";
+
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${encodeURIComponent(text)}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                if (data && data[0]) {
+                    const translated = data[0].map(item => item[0]).join('');
+                    outputDiv.innerText = translated;
+                } else {
+                    outputDiv.innerText = "Error parsing translation.";
+                }
+            } catch (err) {
+                outputDiv.innerText = "Network error. Please check your internet connection.";
+            }
+        }
+    </script>
 </body>
 </html>
